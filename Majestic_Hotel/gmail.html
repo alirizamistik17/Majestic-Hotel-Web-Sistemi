@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gelen Kutusu (2) - info@majestichotel.com.tr - Gmail</title>
+    <style>
+        body { margin: 0; font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif; background-color: #f6f8fc; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        .header { display: flex; align-items: center; padding: 8px 16px; background-color: #f6f8fc; }
+        .menu-icon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; fill: #5f6368; }
+        .menu-icon:hover { background: rgba(60,64,67,0.08); }
+        .logo-wrap { display: flex; align-items: center; width: 200px; }
+        .gmail-logo { height: 40px; margin-left: 4px; }
+        .search-container { flex: 1; max-width: 720px; background-color: #eaf1fb; border-radius: 24px; padding: 0 16px; display: flex; align-items: center; gap: 8px; height: 48px; margin-left: 20px;}
+        .search-box { border: none; background: transparent; width: 100%; font-size: 16px; outline: none; }
+        .search-icon { fill: #444746; width: 24px; height: 24px; }
+        .header-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+        .profile { width: 32px; height: 32px; border-radius: 50%; background-color: #211f17; color: white; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; border: 4px solid #fff; }
+        
+        .main-container { display: flex; flex: 1; }
+        .sidebar { width: 256px; padding: 8px 0 0 16px; }
+        .compose-btn { background-color: #c2e7ff; color: #001d35; padding: 0 24px 0 16px; height: 56px; border-radius: 16px; border: none; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; transition: box-shadow 0.2s;}
+        .compose-btn:hover { box-shadow: 0 1px 3px 0 rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15); }
+        .compose-icon { width: 24px; height: 24px; fill: #001d35; }
+        .nav-item { padding: 0 12px 0 24px; font-size: 14px; color: #202124; cursor: pointer; border-radius: 0 16px 16px 0; margin-right: 16px; height: 32px; display: flex; align-items: center; gap: 18px; font-weight: 500;}
+        .nav-item.active { background-color: #d3e3fd; color: #041e49; font-weight: 700; }
+        .nav-item:hover:not(.active) { background-color: #e8eaed; }
+        .nav-icon { width: 20px; height: 20px; fill: #444746; }
+        .active .nav-icon { fill: #041e49; }
+        
+        .email-list-container { flex: 1; background-color: #ffffff; border-radius: 16px; margin: 0 16px 16px 0; display: flex; flex-direction: column; overflow: hidden;}
+        .toolbar { padding: 8px 16px; display: flex; gap: 16px; color: #444746; border-bottom: 1px solid #f2f2f2;}
+        .toolbar-icon { width: 20px; height: 20px; fill: currentColor; cursor: pointer; padding: 8px; border-radius: 50%;}
+        .toolbar-icon:hover { background: rgba(60,64,67,0.08); }
+        
+        .emails { overflow-y: auto; flex: 1; }
+        .email-item { display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid #f2f2f2; cursor: pointer; font-size: 14px; height: 40px;}
+        .email-item:hover { box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15); z-index: 1; position: relative; border-bottom-color: transparent;}
+        .email-item.unread { font-weight: 700; background-color: #ffffff; color: #202124; }
+        .email-item.read { background-color: #f2f6fc; color: #5f6368; font-weight: 400; }
+        .checkbox-wrap { display: flex; align-items: center; gap: 12px; margin-right: 12px; fill: #444746; }
+        .sender { width: 200px; display: flex; align-items: center; }
+        .subject { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; gap: 4px; }
+        .snippet { font-weight: 400; color: #5f6368; }
+        .date { width: 60px; text-align: right; font-size: 12px; font-weight: 500;}
+        
+        .btn-back-home { position: fixed; bottom: 20px; right: 20px; background-color: #ea4335; color: white; padding: 15px 30px; text-decoration: none; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index:999;}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+        </div>
+        <div class="logo-wrap">
+            <svg viewBox="0 0 24 24" style="height:32px; fill:#ea4335;"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><span style="font-size: 22px; color: #5f6368; margin-left: 8px;">Gmail</span>
+        </div>
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input type="text" class="search-box" placeholder="Postalar içinde arayın">
+        </div>
+        <div class="header-right">
+            <div class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></svg></div>
+            <div class="menu-icon"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.43-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg></div>
+            <div class="profile">MH</div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <button class="compose-btn">
+                <svg class="compose-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                Oluştur
+            </button>
+            <div class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z"/></svg>
+                Gelen Kutusu <span style="margin-left:auto;">2</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                Yıldızlı
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                Ertelenenler
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                Gönderilmiş Postalar
+            </div>
+        </div>
+
+        <div class="email-list-container">
+            <div class="toolbar">
+                <div class="toolbar-icon" style="padding:4px;"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg></div>
+                <div class="toolbar-icon" style="padding:4px;"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg></div>
+                <div class="toolbar-icon" style="padding:4px;"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></div>
+            </div>
+
+            <div class="emails">
+                <div class="email-item unread">
+                    <div class="checkbox-wrap">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="sender">Booking.com</div>
+                    <div class="subject">Yeni Rezervasyon Onayı (No: 847291) <span class="snippet">&nbsp;-&nbsp; Sayın yönetici, Majestic Hotel için yeni bir rezervasyon alınmıştır...</span></div>
+                    <div class="date">14:30</div>
+                </div>
+
+                <div class="email-item unread">
+                    <div class="checkbox-wrap">
+                        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="sender">Ali Rıza Mıstık</div>
+                    <div class="subject">Müşteri Geri Bildirimi <span class="snippet">&nbsp;-&nbsp; Odadaki klima hakkında bir bildirim yapmak istiyorum. Mümkünse ilgilenir misiniz?</span></div>
+                    <div class="date">11:15</div>
+                </div>
+
+                <div class="email-item read">
+                    <div class="checkbox-wrap">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#cfd3d8"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cfd3d8" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="sender">Otelz Destek</div>
+                    <div class="subject">Fiyat Güncellemesi Hatırlatması <span class="snippet">&nbsp;-&nbsp; Merhaba, yaz sezonu fiyatlarınızı panel üzerinden güncellemeyi unutmayın.</span></div>
+                    <div class="date">Dün</div>
+                </div>
+
+                <div class="email-item read">
+                    <div class="checkbox-wrap">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="#cfd3d8"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cfd3d8" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="sender">Akil Rahman Turza</div>
+                    <div class="subject">Aylık Rapor - Mayıs <span class="snippet">&nbsp;-&nbsp; Ekteki dosyada bu ayın doluluk oranları ve gelir tablolarını bulabilirsiniz.</span></div>
+                    <div class="date">20 May</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a href="index.html" class="btn-back-home">Ana Sayfaya Dön</a>
+</body>
+</html>

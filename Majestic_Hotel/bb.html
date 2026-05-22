@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Majestic Hotel - Rezervasyon</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/pickmeup.min.js"></script>
+    <script type="text/javascript" src="dist/handleCounter.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/pickmeup.css">
+    <link rel="stylesheet" type="text/css" href="css/handle-counter.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="dist/jquery.scrollUp.js"></script>
+    <script type="text/javascript" src="dist/demo.js"></script>
+</head>
+<body>
+    <header class="tm-header">
+        <img class="tm-logo" src="images/Majestic_Hotel_hd.png" alt="Majestic Hotel">
+        <nav class="tm-nav">
+       <div>
+            <ul>
+                <li class="tm-list"><a href="index.html">Home</a></li>
+                <li class="tm-list"><a href="explore.html">Explore</a></li>
+                <li class="tm-list"><a href="rooms.html">Rooms</a></li>
+                <li class="tm-list"><a href="bb.html">Booking</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>    
+            </div>
+        </nav>
+    </header>
+    
+    <section class="tm-main">
+           <p>Booking</p>
+    </section>
+    
+    <section class="tm-booking">
+    <form id="originalBookingForm">
+        <div class="tm-form1">
+            <input type="text" name="name" id="b_name" placeholder="Name">  
+            <input type="email" name="email" id="b_email" placeholder="E-mail"> 
+            
+            <label for="rooms" id="inlinelable">Rooms</label>
+            <select name="Rooms" id="b_room">
+                <option value="1500" data-name="Luxury Suite">Luxury Suite - 1500₺</option>
+                <option value="2500" data-name="Delux Suite">Delux Suite - 2500₺</option>
+                <option value="4000" data-name="Premier Suite">Premier Suite - 4000₺</option>
+                <option value="1000" data-name="Luxury Room">Luxury Room - 1000₺</option>
+                <option value="2000" data-name="Delux Room">Delux Room - 2000₺</option>
+                <option value="3500" data-name="Premier Room">Premier Room - 3500₺</option>
+            </select> 
+            
+            <div class="tm-num1" id="handleCounter1">    
+                <label for="number1" >Number of Rooms</label><br/>
+                <button type="button" class="counter-minus btn btn-primary">- </button>
+                <input type="text" name="number1" id="number1" value="1">
+                <button type="button" class="counter-plus btn btn-primary">+  </button>
+            </div>
+            
+            <div class="tm-num2" id="handleCounter2">      
+                <label for="number2">Number of Guests</label><br/>
+                <button type="button" class="counter-minus btn btn-primary">-</button>
+                <input type="text" name="number2" id="number2" value="1">
+                <button type="button" class="counter-plus btn btn-primary">+</button>
+            </div>
+        </div>
+        
+        <div class="vertical-line"> </div>
+        
+        <div class="tm-form2">
+            <div class="tm-cl">
+                <label for="date1" class="arrival">Visiting Dates from Arrival to Departure</label>
+                <input type="text" name="date1" id="b_dates" class="range" readonly="readonly"> 
+                
+                <!-- Dynamic Summary Integration -->
+                <div id="dynamicSummary" style="margin-top: 30px; background: rgba(255,255,255,0.8); padding: 15px; border-radius: 5px; color: #333; text-align: left; font-size: 15px; display: none;">
+                    <p style="margin: 5px 0;"><strong>Room:</strong> <span id="s_room">Luxury Suite</span></p>
+                    <p style="margin: 5px 0;"><strong>Quantity:</strong> <span id="s_room_count">1</span></p>
+                    <p style="margin: 5px 0;"><strong>Guests:</strong> <span id="s_guests">1</span></p>
+                    <p style="margin: 5px 0;"><strong>Nights:</strong> <span id="s_nights">1</span></p>
+                    <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
+                    <p style="margin: 5px 0; font-size: 18px; color: #ec3c6a;"><strong>Total: <span id="s_total">1500</span> ₺</strong></p>
+                </div>
+
+                <input type="submit" id="btnProceedOld" value="Proceed" style="margin-top:20px;">
+            </div>
+        </div>
+    </form>
+    </section>
+    
+    <footer class="tm-footer">
+        <div class="tm-us">
+        <p class="bold">About Us</p>
+        <p>We are a part of chain of luxury hotels 
+            which extends all over the world. We 
+            provide a luxorious stay with various value
+            added and free services which will make
+            you visit us over and over again.</p>    
+        </div>
+       
+        <div class="tm-address">
+        <p class="bold">Address</p>
+        <p>Cumhuriyet, Yavuz Sultan Selim Cd No:41, 17800 Lapseki/Çanakkale
+            Telefon : 0286 512 3017
+            Email : majestic@info.com</p>    
+        </div>
+        <br/>
+    <div class="tm-media">
+        <a href="facebook.html"> <img src="images/fb.png"></a>
+        <a href="gmail.html"> <img src="images/G.png"> </a>
+        <a href="twitter.html"> <img src="images/twittr.png"> </a>
+        <a href="instagram.html">  <img src="images/insta.png"> </a>
+        </div>
+    </footer>
+
+    <!-- Payment Modal (Kept from previous design but triggered by old form) -->
+    <div id="paymentModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('paymentModal').style.display='none'">&times;</span>
+            <h2 style="color:#ec3c6a; margin-bottom:10px; text-align:center;">Güvenli Ödeme</h2>
+            <p style="text-align:center; color:#555; margin-bottom:20px;">Ödenecek Tutar: <strong style="font-size:20px; color:#333;"><span id="m_total">1500</span> ₺</strong></p>
+            <div class="payment-form">
+                <input type="text" placeholder="Kart Üzerindeki İsim" required>
+                <input type="text" placeholder="Kart Numarası (16 Hane)" maxlength="16" required>
+                <div class="input-row">
+                    <input type="text" placeholder="AA / YY" maxlength="5" required>
+                    <input type="text" placeholder="CVC" maxlength="3" required>
+                </div>
+                <button id="btnPay" class="btn-pay" type="button">Güvenli Ödeme Yap</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-content success-content" style="text-align:center;">
+            <div class="success-icon">✓</div>
+            <h2 style="color:#4CAF50; margin-bottom:15px;">Rezervasyon Başarılı!</h2>
+            <p style="color:#555; line-height:1.6; margin-bottom:25px;">Ödemeniz başarıyla alındı ve rezervasyonunuz onaylandı. Detaylar e-posta adresinize gönderilmiştir.<br><br>Sizi ağırlamak için sabırsızlanıyoruz!</p>
+            <a href="index.html" class="btn-home">Ana Sayfaya Dön</a>
+        </div>
+    </div>
+    
+</body>
+</html>
